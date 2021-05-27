@@ -1,71 +1,90 @@
-<!-- <div>
-    <button type="submit" class="btn btn-primary" (click)="onOpenModal(lecturer, 'add')">Add subject <span
+ <div>
+    <button type="submit" class="btn btn-primary" (click)="onOpenModal(subject, 'add')">Add subject <span
     class="sr-only">(current)</span></button>
-   </div> -->
+   </div>
 
-<!--add Lecturer -->
-<!-- <div class="container" id="main-container">
+<!--add subjects -->
+ <div class="container" id="main-container">
     <div class="row">
-      <div *ngFor="let lecturer of lecturer" class="col-md-6 col-xl-3">
+      <div *ngFor="let subject of subject" class="col-md-6 col-xl-3">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"> Lecturer id :
-            {{lecturer?.id}}</li>
-          <li class="list-group-item">Lecturer name :
-            {{lecturer?.name}}</li>
-  
-          <li class="list-group-item">Lecturer email :
-            {{lecturer?.email}}</li>
-          <li class="list-group-item"> Lecturer phonenumber :
-            {{lecturer?.phonenumber}}
+          <li class="list-group-item"> Subject id :
+            {{subject?.id}}</li>
+          <li class="list-group-item">Subject name :
+            {{subject?.name}}</li>
+          <li class="list-group-item">Subject type :
+            {{subject?.type}}</li>
+          <li class="list-group-item">Subject category :
+              {{subject?.category}}</li>
+          <li class="list-group-item"> Subject credits :
+            {{subject?.credits}}
           </li>
+          <li class="list-group-item">Subject lecturername :
+            {{subject?.lecturername}}</li>
+          <li class="list-group-item">Subject year :
+              {{subject?.year}}</li>
         </ul>
   
         <div class="float-right btn-group btn-group-sm">
-          <a (click)="onOpenModal(lecturer, 'edit')" class="btn btn-primary tooltips" data-placement="top"
+          <a (click)="onOpenModal(subject, 'edit')" class="btn btn-primary tooltips" data-placement="top"
             data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-          <a (click)="onOpenModal(lecturer, 'delete')" class="btn btn-secondary tooltips" data-placement="top"
+          <a (click)="onOpenModal(subject, 'delete')" class="btn btn-secondary tooltips" data-placement="top"
             data-original-title="Delete"><i class="fa fa-trash"></i></a>
   
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
   
-  <!-- Add Lecturer Modal -->
-  <!-- <div class="modal fade" id="addLecturerModal" tabindex="-1" role="dialog" aria-labelledby="addLecturerModalLabel"
+  <!-- Add Subject Modal -->
+  <div class="modal fade" id="addSubjectModal" tabindex="-1" role="dialog" aria-labelledby="addSubjectModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="addlecturerModalLabel">Add Lecturer</h5>
+          <h5 class="modal-title" id="addsubjectModalLabel">Add Subject</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form #addForm="ngForm" (ngSubmit)="onAddLecturer(addForm)">
+          <form #addForm="ngForm" (ngSubmit)="onAddSubject(addForm)">
             <div class="form-group">
-              <label for="id">Lecturer Id</label>
+              <label for="id">Subject Id</label>
               <input type="number" ngModel name="id" class="form-control" id="id" required>
             </div>
             <div class="form-group">
-              <label for="name">Lecturer name</label>
+              <label for="name">Subject name</label>
               <input type="text" ngModel name="name" class="form-control" id="name" required>
             </div>
   
   
             <div class="form-group">
-              <label for="email">Lecturer Email </label>
-              <input type="email" ngModel name="email" class="form-control" id="email" required>
+              <label for="type">Subject Type </label>
+              <input type="text" ngModel name="type" class="form-control" id="type" required>
+            </div>
+
+            <div class="form-group">
+              <label for="category">Subject Category</label>
+              <input type="text" ngModel name="category" class="form-control" id="category" required>
             </div>
   
             <div class="form-group">
-              <label for="phonenumber">Lecturer Phoneumber</label>
-              <input type="number" ngModel name="phonenumber" class="form-control" id="phonenumber" required>
+              <label for="credits">Subject Credits</label>
+              <input type="number" ngModel name="credits" class="form-control" id="credits" required>
             </div>
+            <div class="form-group">
+              <label for="lecturername">Subject Lecturername</label>
+              <input type="text" ngModel name="lecturername" class="form-control" id="lecturername" required>
+            </div>
+            <div class="form-group">
+              <label for="year">Subject year</label>
+              <input type="text" ngModel name="year" class="form-control" id="year" required>
+            </div>
+
             <div class="modal-footer">
-              <button type="button" id="add-lecturer-form" class="btn btn-secondary" data-dismiss="modal"
-                (click)="cancel()">Cancel</button>
+              <button type="button" id="add-subject-form" class="btn btn-secondary" data-dismiss="modal"
+                >Cancel</button>
               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save
               </button>
             </div>
@@ -76,15 +95,15 @@
       </div>
     </div>
   </div>
-   -->
+  
   
   <!-- Edit Modal -->
-  <!-- <div class="modal fade" id="updateLecturerModal" tabindex="-1" role="dialog" aria-labelledby="lecturerEditModalLabel"
+  <div class="modal fade" id="updateSubjectModal" tabindex="-1" role="dialog" aria-labelledby="subjectEditModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateLecturerModalLabel">Edit Lecturer {{editLecturer?.id}}</h5>
+          <h5 class="modal-title" id="updateSubjectModalLabel">Edit Subject {{editSubject?.id}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -92,31 +111,45 @@
         <div class="modal-body">
           <form #editForm="ngForm">
             <div class="form-group">
-              <label for="id">Lecturer Id</label>
-              <input type="number" ngModel="{{editLecturer?. id}}" name="id" class="form-control" id="id">
+              <label for="id">Subject Id</label>
+              <input type="number" ngModel="{{editSubject?. id}}" name="id" class="form-control" id="id">
             </div>
             <div class="form-group">
-              <label for=" name">Lecturer name</label>
-              <input type="text" ngModel="{{editLecturer?. name}}" name="name" class="form-control" id="name">
+              <label for=" name">Subject name</label>
+              <input type="text" ngModel="{{editSubject?. name}}" name="name" class="form-control" id="name">
             </div>
   
   
             <div class="form-group">
-              <label for="email">Lecturer Email</label>
-              <input type="email" ngModel="{{editLecturer?.email}}" name="email" class="form-control" id="email" required>
+              <label for="type">Subject Type</label>
+              <input type="text" ngModel="{{editSubject?.type}}" name="type" class="form-control" id="type" required>
             </div>
             <div class="form-group">
-              <label for="phonenumber">Lecturer Phoneumber</label>
-              <input type="number" ngModel="{{editLecturer?.phonenumber}}" name="phonenumber" class="form-control"
-                id="phonenumber" required>
+              <label for="category">Subject Category</label>
+              <input type="text" ngModel="{{editSubject?.category}}" name="category" class="form-control" id="category" required>
             </div>
-  
-  
+
+
+            <div class="form-group">
+              <label for="credits">Subject Credits</label>
+              <input type="number" ngModel="{{editSubject?.credits}}" name="credits" class="form-control"
+                id="credits" required>
+            </div>
+            <div class="form-group">
+              <label for="lecturername">Subject Lecturername</label>
+              <input type="text" ngModel="{{editSubject?.lecturername}}" name="lecturername" class="form-control"
+                id="lecturername" required>
+            </div>
+            <div class="form-group">
+              <label for="year">Subject year</label>
+              <input type="text" ngModel="{{editSubject?.year}}" name="year" class="form-control"
+                id="year" required>
+            </div>
   
             <div class="modal-footer">
               <button type="button" id="" data-dismiss="modal" class="btn btn-secondary" data-dismiss="modal"
-                (click)="cancel()">Cancel</button>
-              <button (click)="onUpdateLecturer(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save
+                >Cancel</button>
+              <button (click)="onUpdateSubjects(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save
               </button>
             </div>
           </form>
@@ -124,27 +157,27 @@
       </div>
     </div>
   </div>
-   -->
+  
   
   <!-- Delete Modal -->
-  <!-- <div class="modal fade" id="deleteLecturerModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+  <div class="modal fade" id="deleteSubjectModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Delete Lecturer</h5>
+          <h5 class="modal-title" id="deleteModalLabel">Delete Subject</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to delete lecturer {{deleteLecturer?.id}}?</p>
+          <p>Are you sure you want to delete subject {{deleteSubject?.id}}?</p>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button (click)="onDeleteLecturer(deleteLecturer?.id)" class="btn btn-danger"
+            <button (click)="onDeleteSubject(deleteSubject?.id)" class="btn btn-danger"
               data-dismiss="modal">Yes</button>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
